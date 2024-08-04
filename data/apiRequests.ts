@@ -9,6 +9,12 @@ export const searchShows = async (query: string) => {
   return data;
 };
 
+export const getShowDetails = async (id: number) => {
+  const response = await fetch(`https://api.tvmaze.com/shows/${id}`);
+  const data = await response.json();
+  return data;
+};
+
 export const getTrendingMovies = async () => {
   const response = await fetch(`${URL}/trending/movies`);
   const data = await response.json();
