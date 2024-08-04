@@ -21,9 +21,9 @@ function FavoritesContextProvider(props: PropsWithChildren) {
   return (
     <FavoritesContext.Provider
       value={{
-        favoriteShowIds,
-        addFavoriteShow,
-        removeFavoriteShow,
+        favoriteShowIds: favoriteShowIds,
+        addFavoriteShow: addFavoriteShow,
+        removeFavoriteShow: removeFavoriteShow,
       }}
     >
       {props.children}
