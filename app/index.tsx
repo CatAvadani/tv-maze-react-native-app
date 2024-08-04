@@ -1,3 +1,4 @@
+import StarsBackground from '@/components/StarsBackground';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -18,7 +19,7 @@ const Welcome = () => {
 
     const timer = setTimeout(() => {
       router.push('home');
-    }, 5000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, [fadeAnim, router]);
@@ -49,6 +50,8 @@ const Welcome = () => {
                 paddingHorizontal: 16,
               }}
             >
+              <StarsBackground />
+
               <View style={{ marginTop: 20 }}>
                 <Animated.Text
                   style={{
