@@ -1,4 +1,4 @@
-# TV Maze App
+# TV Maze App - React Native Project
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20; justify-content: space-around;">
    <img src="assets/images/splash-screen.jpg" alt="Splash Screen" width="200">
