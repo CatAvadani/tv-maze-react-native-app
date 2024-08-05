@@ -40,7 +40,16 @@ export default function RootLayout() {
         <FavoritesContextProvider>
           <Stack>
             <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+
             <Stack.Screen name='index' options={{ headerShown: false }} />
+            <Stack.Screen
+              name='details'
+              options={{
+                title: 'Show Details',
+                headerStyle: { backgroundColor: '#221642' },
+                headerTintColor: 'white',
+              }}
+            />
             <Stack.Screen name='+not-found' />
           </Stack>
         </FavoritesContextProvider>

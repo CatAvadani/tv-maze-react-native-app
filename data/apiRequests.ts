@@ -15,6 +15,12 @@ export const getShowDetails = async (id: number) => {
   return data;
 };
 
+export const getShowCast = async (id: number) => {
+  const response = await fetch(`https://api.tvmaze.com/shows/${id}/cast`);
+  const data = await response.json();
+  return data;
+};
+
 export const getTrendingMovies = async () => {
   const response = await fetch(`${URL}/trending/movies`);
   const data = await response.json();

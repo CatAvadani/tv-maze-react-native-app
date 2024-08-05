@@ -33,13 +33,7 @@ const FavoritesScreen: React.FC = () => {
   return (
     <LinearGradient
       colors={['#7737dd', '#2e0128', '#3d2285']}
-      style={{
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        height: '100%',
-      }}
+      className='h-full absolute w-full left-0 right-0 top-0'
     >
       <SafeAreaView>
         <Text className=' text-center p-4 font-black text-indigo-200 text-xl bg-black/50'>
