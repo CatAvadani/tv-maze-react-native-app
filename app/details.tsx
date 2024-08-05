@@ -1,31 +1,33 @@
+import { CastMember, Show } from '@/data/interfaces';
 import { useRoute } from '@react-navigation/native';
+import { useQuery } from '@tanstack/react-query';
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FlatList, Image, SafeAreaView, Text, View } from 'react-native';
 import { getShowCast, getShowDetails } from '../data/apiRequests';
 
 const ShowDetails = () => {
   const route = useRoute();
   const { showId } = route.params as { showId: number };
-  const [show, setShow] = useState<any>(null);
-  const [cast, setCast] = useState<any[]>([]);
 
-  useEffect(() => {
-    const fetchShowDetails = async () => {
-      const showDetails = await getShowDetails(showId);
-      setShow(showDetails);
-    };
+  const {
+    data: show,
+    isLoading: isLoadingShow,
+    error: errorShow,
+  } = useQuery<Show>({
+    queryKey: ['showDetails', showId],
+    queryFn: () => getShowDetails(showId),
+  });
+  const {
+    data: cast,
+    isLoading: isLoadingCast,
+    error: errorCast,
+  } = useQuery<CastMember[]>({
+    queryKey: ['showCast', showId],
+    queryFn: () => getShowCast(showId),
+  });
 
-    const fetchShowCast = async () => {
-      const showCast = await getShowCast(showId);
-      setCast(showCast);
-    };
-
-    fetchShowDetails();
-    fetchShowCast();
-  }, [showId]);
-
-  if (!show) {
+  if (isLoadingShow || isLoadingCast) {
     return (
       <SafeAreaView>
         <Text>Loading...</Text>
@@ -33,10 +35,20 @@ const ShowDetails = () => {
     );
   }
 
-  const renderCastMember = ({ item }) => (
+  if (errorShow || errorCast) {
+    return (
+      <SafeAreaView>
+        <Text>Error loading data</Text>
+      </SafeAreaView>
+    );
+  }
+
+  const renderCastMember = ({ item }: { item: CastMember }) => (
     <View key={item.person.id} className='flex flex-1 items-center m-4'>
       <Image
-        source={{ uri: item.person.image.medium }}
+        source={{
+          uri: item.person.image?.medium ?? 'https://via.placeholder.com/150',
+        }}
         className='w-20 h-20 rounded-sm'
       />
       <Text className='text-sm font-bold text-white py-2'>
@@ -55,21 +67,29 @@ const ShowDetails = () => {
         <FlatList
           ListHeaderComponent={() => (
             <>
-              <Image
-                source={{ uri: show.image.medium }}
-                className='w-full h-52 object-cover'
-              />
+              {show?.image?.medium ? (
+                <Image
+                  source={{ uri: show.image?.medium }}
+                  className='w-full h-52 object-cover'
+                />
+              ) : (
+                <View className='w-full h-52 object-cover bg-gray-500'>
+                  <Text className='text-center text-white mt-20'>
+                    No Image Available
+                  </Text>
+                </View>
+              )}
               <Text className='text-xl font-bold text-center p-4 text-violet-300'>
-                {show.name}
+                {show?.name}
               </Text>
               <Text className='text-lg font-normal text-center text-white/60 p-4'>
-                {show.genres.join(', ')}
+                {show?.genres.join(', ')}
               </Text>
               <Text
                 className='
                 text-sm text-white/80 p-4 text-center '
               >
-                {show.summary.replace(/<[^>]+>/g, '')}
+                {show?.summary.replace(/<[^>]+>/g, '')}
               </Text>
               <Text className='text-xl font-bold text-center p-4 text-white'>
                 Cast

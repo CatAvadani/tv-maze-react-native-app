@@ -58,8 +58,9 @@ const ShowCard = ({ show }: ShowCardProps) => {
           : 'No summary available'}
       </Text>
       <Pressable
-        className='w-1/2 self-end p-4 flex flex-row justify-center items-center gap-2
+        className='w-1/2 self-end p-2 mx-2 flex flex-row justify-center items-center gap-2
       '
+        android_ripple={{ color: '#291d44' }}
         onPress={() => {
           handleShowDetails();
         }}

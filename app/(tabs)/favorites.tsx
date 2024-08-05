@@ -1,5 +1,6 @@
 import ShowCard from '@/components/ShowCard';
 import { getShowDetails } from '@/data/apiRequests';
+import { Show } from '@/data/interfaces';
 import { useFavoriteList } from '@/store/Favorites-context';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
