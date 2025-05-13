@@ -1,13 +1,6 @@
 # TV Maze App - React Native Project
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20; justify-content: space-around;">
-   <img src="assets/images/splash-screen.jpg" alt="Splash Screen" width="200">
-   
-   <img src="assets/images/home-screen.jpg" alt="Home Screen" width="200">
-   
-   <img src="assets/images/details-screen.jpg" alt="Show Details Screen" width="200" >
-
-</div>
+ <img src="assets/images/Tv_maze.png" alt="mobile image" width="600"/>
 
 The TV Maze App is a ***mobile application***, designed to provide users with an easy way to search for TV shows, view detailed information about shows, including their cast, and manage a list of their favorite shows. The app leverages the [TV Maze API](https://www.tvmaze.com/api) to fetch data and utilizes modern technologies like React Native, Expo, and Tanstack Query.
 
